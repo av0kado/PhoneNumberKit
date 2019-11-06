@@ -13,7 +13,7 @@ import CoreTelephony
 
 public typealias MetadataCallback = (() throws -> Data?)
 
-public final class PhoneNumberKit: NSObject {
+public final class PhoneNumberKit_: NSObject {
 
     // Manager objects
     let metadataManager: MetadataManager
@@ -21,7 +21,7 @@ public final class PhoneNumberKit: NSObject {
     let regexManager = RegexManager()
 
     // MARK: Lifecycle
-    public init(metadataCallback: @escaping MetadataCallback = PhoneNumberKit.defaultMetadataCallback) {
+    public init(metadataCallback: @escaping MetadataCallback = PhoneNumberKit_.defaultMetadataCallback) {
        self.metadataManager = MetadataManager(metadataCallback: metadataCallback)
        self.parseManager = ParseManager(metadataManager: metadataManager, regexManager: regexManager)
    }
@@ -35,7 +35,7 @@ public final class PhoneNumberKit: NSObject {
     ///   - region: ISO 639 compliant region code.
     ///   - ignoreType: Avoids number type checking for faster performance.
     /// - Returns: PhoneNumber object.
-    public func parse(_ numberString: String, withRegion region: String = PhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false) throws -> PhoneNumber {
+    public func parse(_ numberString: String, withRegion region: String = PhoneNumberKit_.defaultRegionCode(), ignoreType: Bool = false) throws -> PhoneNumber {
 
         var numberStringWithPlus = numberString
 
@@ -57,7 +57,7 @@ public final class PhoneNumberKit: NSObject {
     /// - parameter ignoreType:   Avoids number type checking for faster performance.
     ///
     /// - returns: array of PhoneNumber objects.
-    public func parse(_ numberStrings: [String], withRegion region: String = PhoneNumberKit.defaultRegionCode(), ignoreType: Bool = false, shouldReturnFailedEmptyNumbers: Bool = false) -> [PhoneNumber] {
+    public func parse(_ numberStrings: [String], withRegion region: String = PhoneNumberKit_.defaultRegionCode(), ignoreType: Bool = false, shouldReturnFailedEmptyNumbers: Bool = false) -> [PhoneNumber] {
         return parseManager.parseMultiple(numberStrings, withRegion: region, ignoreType: ignoreType, shouldReturnFailedEmptyNumbers: shouldReturnFailedEmptyNumbers)
     }
 
@@ -192,7 +192,7 @@ public final class PhoneNumberKit: NSObject {
     ///
     /// - returns: an optional Data representation of the metadata.
     public static func defaultMetadataCallback() throws -> Data? {
-        let frameworkBundle = Bundle(for: PhoneNumberKit.self)
+        let frameworkBundle = Bundle(for: PhoneNumberKit_.self)
         guard let jsonPath = frameworkBundle.path(forResource: "PhoneNumberMetadata", ofType: "json") else {
             throw PhoneNumberError.metadataNotFound
         }

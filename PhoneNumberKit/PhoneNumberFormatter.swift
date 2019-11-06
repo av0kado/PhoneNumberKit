@@ -10,7 +10,7 @@ import Foundation
 
 open class PhoneNumberFormatter : Foundation.Formatter {
 
-  public let phoneNumberKit : PhoneNumberKit
+  public let phoneNumberKit : PhoneNumberKit_
 
   private let partialFormatter: PartialFormatter
 
@@ -20,7 +20,7 @@ open class PhoneNumberFormatter : Foundation.Formatter {
 
   /// Override region to set a custom region. Automatically uses the default region code.
   @objc dynamic
-  public var defaultRegion = PhoneNumberKit.defaultRegionCode() {
+  public var defaultRegion = PhoneNumberKit_.defaultRegionCode() {
     didSet {
       partialFormatter.defaultRegion = defaultRegion
     }
@@ -41,14 +41,14 @@ open class PhoneNumberFormatter : Foundation.Formatter {
   }
 
   //MARK: Lifecycle
-  public init(phoneNumberKit pnk: PhoneNumberKit = PhoneNumberKit(), defaultRegion: String = PhoneNumberKit.defaultRegionCode(), withPrefix: Bool = true) {
+  public init(phoneNumberKit pnk: PhoneNumberKit_ = PhoneNumberKit_(), defaultRegion: String = PhoneNumberKit_.defaultRegionCode(), withPrefix: Bool = true) {
     phoneNumberKit = pnk
     self.partialFormatter = PartialFormatter(phoneNumberKit: phoneNumberKit, defaultRegion: defaultRegion, withPrefix: withPrefix)
     super.init()
   }
 
   public required init?(coder aDecoder: NSCoder) {
-    phoneNumberKit = PhoneNumberKit()
+    phoneNumberKit = PhoneNumberKit_()
     self.partialFormatter = PartialFormatter(phoneNumberKit: phoneNumberKit, defaultRegion: defaultRegion, withPrefix: withPrefix)
     super.init(coder: aDecoder)
   }

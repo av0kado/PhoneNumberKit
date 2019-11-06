@@ -11,7 +11,7 @@ import UIKit
 
 /// Custom text field that formats phone numbers
 open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
-    public let phoneNumberKit: PhoneNumberKit!
+    public let phoneNumberKit: PhoneNumberKit_!
 
     /// Override setText so number will be automatically formatted when setting text by code
     override open var text: String? {
@@ -33,7 +33,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
         super.text = newValue
     }
 
-    private lazy var _defaultRegion: String = PhoneNumberKit.defaultRegionCode()
+    private lazy var _defaultRegion: String = PhoneNumberKit_.defaultRegionCode()
 
     /// Override region to set a custom region. Automatically uses the default region code.
     open var defaultRegion: String {
@@ -129,7 +129,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
 
      - returns: UITextfield
      */
-    public convenience init(withPhoneNumberKit phoneNumberKit: PhoneNumberKit) {
+    public convenience init(withPhoneNumberKit phoneNumberKit: PhoneNumberKit_) {
         self.init(frame: .zero, phoneNumberKit: phoneNumberKit)
     }
 
@@ -141,7 +141,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
 
      - returns: UITextfield
      */
-    public init(frame: CGRect, phoneNumberKit: PhoneNumberKit) {
+    public init(frame: CGRect, phoneNumberKit: PhoneNumberKit_) {
         self.phoneNumberKit = phoneNumberKit
         super.init(frame: frame)
         self.setup()
@@ -156,7 +156,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
      - returns: UITextfield
      */
     override public init(frame: CGRect) {
-        phoneNumberKit = PhoneNumberKit()
+        phoneNumberKit = PhoneNumberKit_()
         super.init(frame:frame)
         self.setup()
     }
@@ -169,7 +169,7 @@ open class PhoneNumberTextField: UITextField, UITextFieldDelegate {
      - returns: UITextfield
      */
     required public init(coder aDecoder: NSCoder) {
-        phoneNumberKit = PhoneNumberKit()
+        phoneNumberKit = PhoneNumberKit_()
         super.init(coder: aDecoder)!
         self.setup()
     }
